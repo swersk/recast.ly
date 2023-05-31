@@ -1,35 +1,48 @@
 //import components
-import exampleVideoData from '/src/data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoListEntry from './VideoListEntry.js';
 import VideoPlayer from './VideoPlayer.js';
 import Search from './Search.js';
+import searchYouTube from '/src/lib/searchYouTube.js';
 const { useState } = React;
-
+const { useEffect } = React;
 
 var App = () => {
 
+  const [query, setQuery] = useState('');
+  const [videoList, setVideoList] = useState([]);
+  const [currentVideo, setCurrentVideo] = useState(null);
 
-  const [videoList, setVideoList] = useState({exampleVideoData});
-  const [currentVideo, setCurrentVideo] = useState({});
+
+  useEffect(() => {
+    searchYouTube(query, (data) => {
+      setVideoList(data);
+      setCurrentVideo(data[0]);
+    });
+    // return () => {
+    //   setVideoList([]);
+    //   setCurrentVideo(null);
+    // };
+  }, []);
 
   return (
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em> view goes here</h5></div>
+          <div><h5><Search setQuery={setQuery}/></h5></div>
         </div>
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <div><h5><em>videoPlayer</em> view goes here</h5>
+          <div><h5><em><VideoPlayer video={currentVideo}/></em></h5>
           </div>
         </div>
         <div className="col-md-5">
-          <div><h5><em><VideoList videos={exampleVideoData} currentVideoTitle={currentVideo}/></em> view goes here</h5></div>
+          <div><h5><em><VideoList videos={videoList} setCurrentVideo={setCurrentVideo}/></em></h5></div>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 };
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
