@@ -1,12 +1,29 @@
-var Search = ({setQuery}) => {
+const { useState } = React;
+const { useEffect } = React;
+import searchYouTube from '/src/lib/searchYouTube.js';
+
+var Search = ({setVideoList, setCurrentVideo}) => {
+
+  const [query, setQuery] = useState('');
+
   const handleChange = (event) => {
-    console.log(event.target.value);
     setQuery(event.target.value);
   };
 
+  useEffect(() => {
+    setTimeout(searchYouTube(query, (data) => {
+      setVideoList(data);
+      setCurrentVideo(data[0]);
+    })
+    , 500);
+  }, [query]);
+
   return (
     <div className="search-bar form-inline">
-      <input className="form-control" type="text" onChange={() => handleChange(event)}/>
+      <input
+        className="form-control"
+        type="text"
+        onChange={(event) => handleChange(event)}/>
       <button className="btn hidden-sm-down">
         <span className="glyphicon glyphicon-search"></span>
       </button>

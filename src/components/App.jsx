@@ -9,27 +9,17 @@ const { useEffect } = React;
 
 var App = () => {
 
-  const [query, setQuery] = useState('');
+
   const [videoList, setVideoList] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(null);
 
 
-  useEffect(() => {
-    searchYouTube(query, (data) => {
-      setVideoList(data);
-      setCurrentVideo(data[0]);
-    });
-    // return () => {
-    //   setVideoList([]);
-    //   setCurrentVideo(null);
-    // };
-  }, []);
 
   return (
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><Search setQuery={setQuery}/></h5></div>
+          <div><h5><Search setVideoList={setVideoList} setCurrentVideo={setCurrentVideo}/></h5></div>
         </div>
       </nav>
       <div className="row">
