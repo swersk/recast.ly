@@ -19,8 +19,8 @@
 
 ## App's Structural Components
 
-• App: Main container for the whole application.
-• Search: Managed the search input field.
-• VideoPlayer: Played a single video and showcased its details.
-• VideoList: Container component that rendered video list entries.
+• App: Main container for the whole application.</br>
+• Search: Managed the search input field.</br>
+• VideoPlayer: Played a single video and showcased its details.</br>
+• VideoList: Container component that rendered video list entries.</br>
 • VideoListEntry: Displayed a single video's thumbnail. Clicking on its title played the video.
