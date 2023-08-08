@@ -1,4 +1,4 @@
-# recast.ly: a YouTube replica
+# Recast.ly: A YouTube replica
 
 ## Technical Setup and Tools
 • npm: Managed the project's dependencies.</br>
