@@ -1,41 +1,51 @@
-//import components
-import VideoList from './VideoList.js';
-import VideoListEntry from './VideoListEntry.js';
-import VideoPlayer from './VideoPlayer.js';
-import Search from './Search.js';
-import searchYouTube from '/src/lib/searchYouTube.js';
-const { useState } = React;
-const { useEffect } = React;
 
-var App = () => {
+const { useState, useEffect } = React;
+import Search from "./Search.js";
+import searchYouTube from "../lib/searchYouTube.js";
+import VideoPlayer from "./VideoPlayer.js";
+import VideoList from "./VideoList.js";
 
-
-  const [videoList, setVideoList] = useState([]);
+function App(props) {
   const [currentVideo, setCurrentVideo] = useState(null);
+  const [videos, setVideos] = useState([]);
 
+  const getYouTubeVideos = (query) => {
+    searchYouTube(query, (videos) => {
+      setCurrentVideo(videos[0]);
+      setVideos(videos);
+    });
+  };
 
+  const handleVideoListEntryTitleClick = (video) => {
+    setCurrentVideo(video);
+  };
+
+  useEffect(function () {
+    getYouTubeVideos("react tutorials");
+  }, []);
 
   return (
     <div>
       <nav className="navbar">
-        <div className="col-md-6 offset-md-3">
-          <div><h5><Search setVideoList={setVideoList} setCurrentVideo={setCurrentVideo}/></h5></div>
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <Search handleSearchInputChange={getYouTubeVideos} />
+          </div>
         </div>
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <div><h5><em><VideoPlayer video={currentVideo}/></em></h5>
-          </div>
+          <VideoPlayer video={currentVideo} />
         </div>
         <div className="col-md-5">
-          <div><h5><em><VideoList videos={videoList} setCurrentVideo={setCurrentVideo}/></em></h5></div>
+          <VideoList
+            handleVideoListEntryTitleClick={handleVideoListEntryTitleClick}
+            videos={videos}
+          />
         </div>
       </div>
     </div>
   );
-};
+}
 
-// In the ES6 spec, files are "modules" and do not share a top-level scope
-// `var` declarations will only exist globally where explicitly defined
 export default App;
-
