@@ -1,0 +1,24 @@
+# recast.ly: a YouTube replica
+
+## Technical Setup and Tools
+• npm: Managed the project's dependencies.</br>
+• Babel: Transpiled source code using Babel's CLI. Used for converting JSX and ES6 to workable JS.</br>
+• Live Reloading Server: This allowed for automatic browser refreshes whenever the source code was updated.</br>
+• React Dev Tools: Installed a Chrome extension for better debugging.</br>
+
+## Core Tasks:
+• Component Design: Broke down the UI into reusable React components.</br>
+• Dynamic Video List: Used sample data to populate the VideoList and VideoListEntry components.</br>
+• Dynamic Video Player: Passed video data to the VideoPlayer component to render videos.</br>
+• Component Interaction: Made the VideoList and VideoPlayer components interact through the App parent component.</br>
+• REST Server Interaction: Set up a local server for API calls to bypass YouTube's rate limits.</br>
+• YouTube API Integration: Secured a developer key to access YouTube videos.</br>
+• API Helper: Created a helper function for searching YouTube videos.</br>
+
+## App's Structural Components
+
+• App: Main container for the whole application.
+• Search: Managed the search input field.
+• VideoPlayer: Played a single video and showcased its details.
+• VideoList: Container component that rendered video list entries.
+• VideoListEntry: Displayed a single video's thumbnail. Clicking on its title played the video.
