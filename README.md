@@ -9,10 +9,8 @@
 • React Dev Tools: Installed a Chrome extension for better debugging.</br>
 
 ## Core Tasks:
-• Component Design: Broke down the UI into reusable React components.</br>
 • Dynamic Video List: Used sample data to populate the VideoList and VideoListEntry components.</br>
 • Dynamic Video Player: Passed video data to the VideoPlayer component to render videos.</br>
-• Component Interaction: Made the VideoList and VideoPlayer components interact through the App parent component.</br>
 • REST Server Interaction: Set up a local server for API calls to bypass YouTube's rate limits.</br>
 • YouTube API Integration: Secured a developer key to access YouTube videos.</br>
 • API Helper: Created a helper function for searching YouTube videos.</br>
